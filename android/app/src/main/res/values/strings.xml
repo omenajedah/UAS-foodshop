@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Food Shop</string>
+    <string name="title_profile">Profile</string>
+    <string name="title_cart">Cart</string>
+    <string name="title_history">History</string>
+    <string name="title_shop">Shop</string>
+</resources>

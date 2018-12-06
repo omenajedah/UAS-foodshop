@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="ic_increment">@drawable/ic_increment_24</drawable>
+    <drawable name="ic_decrement">@drawable/ic_decrement_24</drawable>
+    <drawable name="ic_cart">@drawable/ic_cart_24</drawable>
+    <drawable name="ic_default_seller">@drawable/ic_default_seller_24</drawable>
+</resources>

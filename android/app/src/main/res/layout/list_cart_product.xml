@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View"/>
+        <import type="com.firman.ecommerce.foodshop.common.util.Utils" />
+
+        <variable
+            name="vm"
+            type="com.firman.ecommerce.foodshop.fragment.cart.ListProductCartViewModel" />
+    </data>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="2dp">
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="3dp">
+
+            <ImageView
+                android:id="@+id/C_IMAGE"
+                setBitmap="@{vm.product.c_IMAGE}"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:adjustViewBounds="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/no_image" />
+
+            <TextView
+                android:id="@+id/V_ITNAM"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:minLines="2"
+                android:text="@{vm.product.v_ITNAM}"
+                android:textColor="@color/black"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@+id/L_DELETE"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/C_IMAGE"
+                app:layout_constraintTop_toTopOf="@+id/C_IMAGE"
+                tools:text="Produk A" />
+
+            <TextView
+                android:id="@+id/N_PRICE"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{Utils.formatIDR(vm.product.n_PRICE)}"
+                android:textColor="@color/price_color"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/V_ITNAM"
+                app:layout_constraintTop_toBottomOf="@+id/V_ITNAM"
+                tools:text="Rp. 10.000" />
+
+            <ImageView
+                android:id="@+id/L_DELETE"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{(v)->vm.onDelete()}"
+                app:layout_constraintBottom_toBottomOf="@+id/V_ITNAM"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/V_ITNAM"
+                app:srcCompat="@android:drawable/ic_menu_delete" />
+
+            <EditText
+                android:id="@+id/N_BOOK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:maxLines="1"
+                android:minEms="3"
+                android:minLines="1"
+                android:singleLine="true"
+                setTextWatcher="@{vm.qtyChange()}"
+                android:text="@{String.valueOf(vm.product.n_BOOK)}"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="@+id/LABEL_BOOK"
+                app:layout_constraintEnd_toStartOf="@+id/INCREMENT_BOOK"
+                app:layout_constraintTop_toTopOf="@+id/LABEL_BOOK"
+                tools:text="10000" />
+
+            <ImageView
+                android:id="@+id/INCREMENT_BOOK"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginEnd="8dp"
+                android:adjustViewBounds="true"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{(v)->vm.onAdd()}"
+                app:layout_constraintBottom_toBottomOf="@+id/N_BOOK"
+                app:layout_constraintEnd_toEndOf="@+id/L_DELETE"
+                app:layout_constraintTop_toTopOf="@+id/N_BOOK"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/ic_increment" />
+
+            <ImageView
+                android:id="@+id/DECREMENT_BOOK"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:adjustViewBounds="true"
+                android:background="?selectableItemBackground"
+                android:clickable="true"
+                android:focusable="true"
+                android:onClick="@{(v)->vm.onRemove()}"
+                app:layout_constraintBottom_toBottomOf="@+id/N_BOOK"
+                app:layout_constraintEnd_toStartOf="@+id/N_BOOK"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/LABEL_BOOK"
+                app:layout_constraintTop_toTopOf="@+id/N_BOOK"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/ic_decrement" />
+
+            <TextView
+                android:id="@+id/LABEL_BOOK"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Quantity"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="@+id/N_PRICE"
+                app:layout_constraintTop_toBottomOf="@+id/N_PRICE" />
+
+            <LinearLayout
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:visibility="@{vm.product.n_BOOK > vm.product.n_QOH ? View.VISIBLE : View.GONE}"
+                android:background="@color/black_overlay">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@{`Can't process this product cause available stock is ` + vm.product.n_QOH}"/>
+            </LinearLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/root_NOTES"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="40"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/INCREMENT_BOOK"
+                app:layout_constraintStart_toStartOf="@+id/C_IMAGE"
+                app:layout_constraintTop_toTopOf="@+id/barrier"
+                app:layout_constraintVertical_bias="0.0">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/V_NOTES"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Notes (Optional)"
+                    android:lines="3"
+                    setTextWatcher="@{vm.notesChange()}"
+                    android:text="@{vm.product.v_NOTES}"
+                    android:textSize="14sp" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.constraint.Barrier
+                android:id="@+id/barrier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="N_BOOK,DECREMENT_BOOK,C_IMAGE,INCREMENT_BOOK"
+                tools:layout_editor_absoluteY="567dp" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+</layout>

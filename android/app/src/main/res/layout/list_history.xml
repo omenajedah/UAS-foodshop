@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="com.firman.ecommerce.foodshop.common.util.Utils" />
+
+        <variable
+            name="vm"
+            type="com.firman.ecommerce.foodshop.fragment.history.ListHistoryViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?selectableItemBackground"
+        android:clickable="true">
+
+        <TextView
+            android:id="@+id/N_TRX_ID"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="@color/colorPrimaryDark"
+            tools:textSize="16dp"
+            android:textStyle="bold"
+            android:text="@{vm.history.n_TRX_ID}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="TRX/20181205/60" />
+
+        <TextView
+            android:id="@+id/C_SELLER_NAME"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:lines="1"
+            android:maxLines="1"
+            android:text="@{`Seller: ` + vm.history.c_SELLER_NAME}"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/totalPrice"
+            app:layout_constraintStart_toStartOf="@+id/N_TRX_ID"
+            app:layout_constraintTop_toBottomOf="@+id/N_TRX_ID"
+            tools:text="Seller: Wafer Shop" />
+
+        <TextView
+            android:id="@+id/totalPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{vm.history.totalItem + `Items @ ` + Utils.formatIDR(vm.history.totalPrice)}"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/N_TRX_ID"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/C_SELLER_NAME"
+            tools:text="\@ Rp. 72,500.00" />
+
+        <TextView
+            android:id="@+id/D_DATE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:text="@{Utils.formatDate(vm.history.d_TIME, `dd MMMM yyyy`)}"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/C_SELLER_NAME"
+            app:layout_constraintTop_toBottomOf="@+id/C_SELLER_NAME"
+            tools:text="05-12-2018" />
+
+        <TextView
+            android:id="@+id/D_TIME"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{Utils.formatDate(vm.history.d_TIME, `HH:mm:ss`)}"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:layout_constraintBottom_toBottomOf="@+id/D_DATE"
+            app:layout_constraintEnd_toEndOf="@+id/totalPrice"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/D_DATE"
+            app:layout_constraintTop_toTopOf="@+id/D_DATE"
+            tools:text="01:30:01" />
+
+    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+
+</layout>
